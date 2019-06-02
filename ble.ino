@@ -6,18 +6,17 @@
 
 
 
-//byte flags = 0b00111110;
+byte flags = 0b00111110;
 byte bpm;
-//byte heart[8] = { 0b00001110, 60, 0, 0, 0 , 0, 0, 0};
-//byte hrmPos[1] = {2};
+byte heart[8] = { 0b00001110, 60, 0, 0, 0 , 0, 0, 0};
 
+//initiate connection state
 bool _BLEClientConnected = false;
-
+//define characteristic and descriptor 
 #define heartRateService BLEUUID((uint16_t)0x180D)
 BLECharacteristic heartRateMeasurementCharacteristics(BLEUUID((uint16_t)0x2A37), BLECharacteristic::PROPERTY_NOTIFY);
-//BLECharacteristic sensorPositionCharacteristic(BLEUUID((uint16_t)0x2A38), BLECharacteristic::PROPERTY_READ);
 BLEDescriptor heartRateDescriptor(BLEUUID((uint16_t)0x2901));
-//BLEDescriptor sensorPositionDescriptor(BLEUUID((uint16_t)0x2901));
+
 
 
 // server callbacks // connection state
@@ -45,10 +44,7 @@ void InitBLE() {
   heartRateMeasurementCharacteristics.addDescriptor(&heartRateDescriptor);
   heartRateMeasurementCharacteristics.addDescriptor(new BLE2902());
 
-  //pHeart->addCharacteristic(&sensorPositionCharacteristic);
-//  sensorPositionDescriptor.setValue("Position 0 - 6");
-//  sensorPositionCharacteristic.addDescriptor(&sensorPositionDescriptor);
-
+ //add service to advertise
   pServer->getAdvertising()->addServiceUUID(heartRateService);
 
   pHeart->start();
@@ -60,23 +56,18 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Start");
   InitBLE();
-  bpm = 1;
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 bpm=random(60,190);
-  //heart[1] = (byte)bpm;
-  //int energyUsed = 3000;
-//  heart[3] = energyUsed / 256;
-//  heart[2] = energyUsed - (heart[2] * 256);
-  Serial.println(bpm);
-
-  heartRateMeasurementCharacteristics.setValue(bpm);
+heart[1] = (byte)bpm;
+Serial.println(bpm);
+ //update values and notify client of HR mesurements
+  heartRateMeasurementCharacteristics.setValue(heart,8);
   heartRateMeasurementCharacteristics.notify();
 
-//  sensorPositionCharacteristic.setValue(hrmPos, 1);
-  //bpm++;
 
   delay(2000);
 }
