@@ -16,9 +16,10 @@ bool _BLEClientConnected = false;
 #define heartRateService BLEUUID((uint16_t)0x180D)
 BLECharacteristic heartRateMeasurementCharacteristics(BLEUUID((uint16_t)0x2A37), BLECharacteristic::PROPERTY_NOTIFY);
 BLEDescriptor heartRateDescriptor(BLEUUID((uint16_t)0x2901));
-
-
-
+//health thermometer
+#define healthThermService BLEUUID((uint16_t)0x1809)
+BLECharacteristic healthThermMeasurementCharacteristics(BLEUUID((uint16_t)0x2A1C), BLECharacteristic::PROPERTY_NOTIFY);
+BLEDescriptor healthThermDescriptor(BLEUUID((uint16_t)0x2901));
 // server callbacks // connection state
 class MyServerCallbacks : public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
@@ -37,17 +38,23 @@ void InitBLE() {
   pServer->setCallbacks(new MyServerCallbacks());
 
   // Create the BLE Service
+  //create heartRateService
   BLEService *pHeart = pServer->createService(heartRateService);
-
   pHeart->addCharacteristic(&heartRateMeasurementCharacteristics);
   heartRateDescriptor.setValue("PPG value");
   heartRateMeasurementCharacteristics.addDescriptor(&heartRateDescriptor);
   heartRateMeasurementCharacteristics.addDescriptor(new BLE2902());
-
+ // create healthThermService
+ BLEService *pHT = pServer->createService(healthThermService);
+ pHT->addCharacteristic(&healthThermMeasurementCharacteristics);
+ healthThermDescriptor.setValue("Temp value");
+ healthThermMeasurementCharacteristics.addDescriptor(&healthThermDescriptor);
+ healthThermMeasurementCharacteristics.addDescriptor(new BLE2902());
  //add service to advertise
   pServer->getAdvertising()->addServiceUUID(heartRateService);
-
+  pServer->getAdvertising()->addServiceUUID(healthThermService);
   pHeart->start();
+  pHT->start();
   // Start advertising
   pServer->getAdvertising()->start();
 }
@@ -64,10 +71,14 @@ void loop() {
 bpm=random(60,190);
 heart[1] = (byte)bpm;
 Serial.println(bpm);
+int temp=random(36,40);
+Serial.println(temp);
  //update values and notify client of HR mesurements
   heartRateMeasurementCharacteristics.setValue(heart,8);
   heartRateMeasurementCharacteristics.notify();
-
+//update values and notify client of HT mesurements
+  healthThermMeasurementCharacteristics.setValue(temp);
+  healthThermMeasurementCharacteristics.notify();
 
   delay(1000);
 }
