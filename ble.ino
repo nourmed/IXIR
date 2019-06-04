@@ -9,7 +9,7 @@
 byte flags = 0b00111110;
 byte bpm;
 byte heart[8] = { 0b00001110, 60, 0, 0, 0 , 0, 0, 0};
-
+int delai=100;
 //initiate connection state
 bool _BLEClientConnected = false;
 //define characteristic and descriptor
@@ -20,6 +20,7 @@ BLEDescriptor heartRateDescriptor(BLEUUID((uint16_t)0x2901));
 #define healthThermService BLEUUID((uint16_t)0x1809)
 BLECharacteristic healthThermMeasurementCharacteristics(BLEUUID((uint16_t)0x2A1C), BLECharacteristic::PROPERTY_NOTIFY);
 BLEDescriptor healthThermDescriptor(BLEUUID((uint16_t)0x2901));
+BLECharacteristic measrementItervalOfTemp(BLEUUID((unit16_t)0x2A21), BLECharacteristic::PROPERTY_NOTIFY);
 // server callbacks // connection state
 class MyServerCallbacks : public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
@@ -47,6 +48,7 @@ void InitBLE() {
  // create healthThermService
  BLEService *pHT = pServer->createService(healthThermService);
  pHT->addCharacteristic(&healthThermMeasurementCharacteristics);
+ pHT->addCharacteristic(&measrementItervalOfTemp);
  healthThermDescriptor.setValue("Temp value");
  healthThermMeasurementCharacteristics.addDescriptor(&healthThermDescriptor);
  healthThermMeasurementCharacteristics.addDescriptor(new BLE2902());
@@ -79,6 +81,8 @@ Serial.println(temp);
 //update values and notify client of HT mesurements
   healthThermMeasurementCharacteristics.setValue(temp);
   healthThermMeasurementCharacteristics.notify();
-
+//set temp delay
+ measrementItervalOfTemp.setValue(delai);
+ measrementItervalOfTemp.notify();
   delay(1000);
 }
