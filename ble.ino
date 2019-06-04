@@ -20,7 +20,7 @@ BLEDescriptor heartRateDescriptor(BLEUUID((uint16_t)0x2901));
 #define healthThermService BLEUUID((uint16_t)0x1809)
 BLECharacteristic healthThermMeasurementCharacteristics(BLEUUID((uint16_t)0x2A1C), BLECharacteristic::PROPERTY_NOTIFY);
 BLEDescriptor healthThermDescriptor(BLEUUID((uint16_t)0x2901));
-BLECharacteristic measrementItervalOfTemp(BLEUUID((unit16_t)0x2A21), BLECharacteristic::PROPERTY_NOTIFY);
+BLECharacteristic measrementItervalOfTemp(BLEUUID((uint16_t)0x2A21), BLECharacteristic::PROPERTY_NOTIFY);
 // server callbacks // connection state
 class MyServerCallbacks : public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
