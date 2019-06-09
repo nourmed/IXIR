@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="lightPink">#C89BD2</color>
+    <color name="darkRed">#6E3D3F</color>
+    <color name="blue1">#1C61AD</color>
+    <color name="blue2">#5C86CA</color>
+    <color name="darkPink">#C1586D</color>
+    <color name="white">#FFFFFF</color>
+    <color name="ixirPink">#ef6fa8</color>
+    <color name="ixirBlue">#30bced</color>
+    <color name="gray">#DADADA</color>
+    <color name="darkgray">#9F9F9F</color>
+</resources>
