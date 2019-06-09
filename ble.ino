@@ -10,6 +10,8 @@ byte flags = 0b00111110;
 byte bpm;
 byte heart[8] = { 0b00001110, 60, 0, 0, 0 , 0, 0, 0};
 int delai=100;
+byte tempFlag = 00;
+byte temp[8]={00,0,0,0,0,0,0,0};
 //initiate connection state
 bool _BLEClientConnected = false;
 //define characteristic and descriptor
@@ -73,13 +75,14 @@ void loop() {
 bpm=random(60,190);
 heart[1] = (byte)bpm;
 Serial.println(bpm);
-int temp=random(36,40);
-Serial.println(temp);
+int t=random(36,40);
+Serial.println(t);
+temp[1]=(byte)t;
  //update values and notify client of HR mesurements
   heartRateMeasurementCharacteristics.setValue(heart,8);
   heartRateMeasurementCharacteristics.notify();
 //update values and notify client of HT mesurements
-  healthThermMeasurementCharacteristics.setValue(temp);
+  healthThermMeasurementCharacteristics.setValue(temp,8);
   healthThermMeasurementCharacteristics.notify();
 //set temp delay
  measrementItervalOfTemp.setValue(delai);
