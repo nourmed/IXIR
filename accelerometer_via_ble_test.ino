@@ -9,7 +9,7 @@
 LIS3DH myIMU( I2C_MODE, 0x18 );
 float x=0 , y=0 ,z=0;
 bool _BLEClientConnected = false;
-#define accelerometerService BLEUUID((uint16_t)0x2FF0));
+//#define accelerometerService BLEUUID((uint16_t)0x2FF0);
 BLECharacteristic XaxisChar(BLEUUID((uint16_t)0x2FF1),BLECharacteristic::PROPERTY_NOTIFY);
 BLECharacteristic YaxisChar(BLEUUID((uint16_t)0x2FF2),BLECharacteristic::PROPERTY_NOTIFY);
 BLECharacteristic ZaxisChar(BLEUUID((uint16_t)0x2FF3),BLECharacteristic::PROPERTY_NOTIFY);
@@ -33,23 +33,23 @@ void InitBLE() {
 
   // Create the BLE Service
 
-  BLEService *pACC = pServer->createService(accelerometerService);
+  BLEService *pACC = pServer->createService(BLEUUID((uint16_t)0x2FF0));
   pACC->addCharacteristic(&XaxisChar);
   pACC->addCharacteristic(&YaxisChar);
   pACC->addCharacteristic(&ZaxisChar);
   AccelerometerDescriptor.setValue("Accelerometer value");
-  XaxisChar.addDescriptor(&AccelerometerDescriptor);
+  //XaxisChar.addDescriptor(&AccelerometerDescriptor);
   XaxisChar.addDescriptor(new BLE2902());
-  YaxisChar.addDescriptor(&AccelerometerDescriptor);
+  //YaxisChar.addDescriptor(&AccelerometerDescriptor);
   YaxisChar.addDescriptor(new BLE2902());
-  ZaxisChar.addDescriptor(&AccelerometerDescriptor);
+  //ZaxisChar.addDescriptor(&AccelerometerDescriptor);
   ZaxisChar.addDescriptor(new BLE2902());
 
 
-  pServer->getAdvertising()->addServiceUUID(accelerometerService);
-  pACC->start();
+   pServer->getAdvertising()->start();
+  // pACC->start();
   // Start advertising
-  pServer->getAdvertising()->start();
+   //pServer->getAdvertising()->start();
 }
 void setup() {
   Serial.begin(115200);
@@ -59,9 +59,9 @@ void setup() {
 }
 void loop() {
   // put your main code here, to run repeatedly:
-x=myIMU.readFloatAccelX();
-y=myIMU.readFloatAccelY();
-z=myIMU.readFloatAccelZ();
+ x=myIMU.readFloatAccelX();
+ y=myIMU.readFloatAccelY();
+ z=myIMU.readFloatAccelZ();
 
  //update values and notify client of XaxisChar
   XaxisChar.setValue(x);
