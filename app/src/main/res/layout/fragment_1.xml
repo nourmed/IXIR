@@ -68,7 +68,7 @@
                         tools:srcCompat="@drawable/footprint" />
 
                     <com.hookedonplay.decoviewlib.DecoView
-                        android:id="@+id/StepsView"
+                        android:id="@+id/stepsView"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_centerHorizontal="true"

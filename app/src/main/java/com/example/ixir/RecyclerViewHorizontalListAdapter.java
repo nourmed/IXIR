@@ -1,6 +1,8 @@
 package com.example.ixir;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,18 +30,25 @@ public class RecyclerViewHorizontalListAdapter extends RecyclerView.Adapter<Recy
         return gvh;
     }
 
+
     @Override
     public void onBindViewHolder(GroceryViewHolder holder, final int position) {
         holder.imageView.setImageResource(horizontalGrocderyList.get(position).getProductImage());
         holder.txtview.setText(horizontalGrocderyList.get(position).getProductName());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String productName = horizontalGrocderyList.get(position).getProductName().toString();
-                Toast.makeText(context, productName + " is selected", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onClick(View v) {
+
+                    Intent i=new Intent ( context ,heartDataActivity.class );
+                    context.startActivity(i);
             }
         });
     }
+
+
+
+
+
 
     @Override
     public int getItemCount() {

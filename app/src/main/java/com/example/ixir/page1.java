@@ -3,11 +3,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -43,7 +41,7 @@ public class page1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_1, container, false);
-        arcView = view.findViewById(R.id.StepsView);
+        arcView = view.findViewById(R.id.stepsView);
         KmView = view.findViewById(R.id.kmView);
         calView = view.findViewById(R.id.calView);
         final ImageView imgView =  view.findViewById(R.id.steps);
@@ -153,6 +151,7 @@ public class page1 extends Fragment {
         RecyclerView.setLayoutManager(horizontalLayoutManager);
         RecyclerView.setAdapter(Adapter);
         populategroceryList();
+
         return view;
 
 
@@ -168,6 +167,12 @@ public class page1 extends Fragment {
         List.add(item3);
         List.add(item4);
         Adapter.notifyDataSetChanged();
+        for (int i=0; i<4;i++)
+        {
+
+
+        }
+
     }
     @Override
     public void onCreateOptionsMenu(Menu menu,
