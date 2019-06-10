@@ -9,10 +9,10 @@
 LIS3DH myIMU( I2C_MODE, 0x18 );
 float x=0 , y=0 ,z=0;
 bool _BLEClientConnected = false;
-#define accelerometerService BLEUUID(0CEAE362-FB5D-49B8-B0DB-288D9273DD12);
-BLECharacteristic XaxisChar(BLEUUID(7773C182-3081-4D74-88B4-9E30277649A8),BLECharacteristic::PROPERTY_NOTIFY);
-BLECharacteristic YaxisChar(BLEUUID(3A164435-D2A8-4628-AB0B-8A801798CA31),BLECharacteristic::PROPERTY_NOTIFY);
-BLECharacteristic ZaxisChar(BLEUUID(D6C57AEB-48BC-4B77-9D66-486E55075ABC),BLECharacteristic::PROPERTY_NOTIFY);
+#define accelerometerService BLEUUID((uint16_t)0x2FF0));
+BLECharacteristic XaxisChar(BLEUUID((uint16_t)0x2FF1),BLECharacteristic::PROPERTY_NOTIFY);
+BLECharacteristic YaxisChar(BLEUUID((uint16_t)0x2FF2),BLECharacteristic::PROPERTY_NOTIFY);
+BLECharacteristic ZaxisChar(BLEUUID((uint16_t)0x2FF3),BLECharacteristic::PROPERTY_NOTIFY);
 BLEDescriptor AccelerometerDescriptor(BLEUUID((uint16_t)0x2901));
 
 class MyServerCallbacks : public BLEServerCallbacks {
