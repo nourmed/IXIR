@@ -35,8 +35,11 @@ void InitBLE() {
 
   BLEService *pACC = pServer->createService(BLEUUID((uint16_t)0x2FF0));
   pACC->addCharacteristic(&XaxisChar);
+  Serial.println(x);
   pACC->addCharacteristic(&YaxisChar);
+  Serial.println(y);
   pACC->addCharacteristic(&ZaxisChar);
+  Serial.println(z);
   AccelerometerDescriptor.setValue("Accelerometer value");
   //XaxisChar.addDescriptor(&AccelerometerDescriptor);
   XaxisChar.addDescriptor(new BLE2902());
