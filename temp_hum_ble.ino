@@ -40,8 +40,8 @@ void InitBLE() {
 	HDescriptor.setValue("Humidity 0 to 100%");
 	TDescriptor.setValue("Temperature -40-60°C");
 
-	outHumidityCharacteristic.addDescriptor(&HyDescriptor);
-	outTemperatureCharacteristic.addDescriptor(&TeDescriptor);
+	HCharacteristic.addDescriptor(&HyDescriptor);
+	TCharacteristic.addDescriptor(&TeDescriptor);
 
 
 	// Create a BLE Descriptor
