@@ -79,3 +79,4 @@ void loop() {
   ZaxisChar.notify();
   delay(1000);
 }
+//fatal error
