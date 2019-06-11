@@ -35,11 +35,11 @@ void InitBLE() {
 
   BLEService *pACC = pServer->createService(BLEUUID((uint16_t)0x2FF0));
   pACC->addCharacteristic(&XaxisChar);
-  Serial.println(x);
+
   pACC->addCharacteristic(&YaxisChar);
-  Serial.println(y);
+
   pACC->addCharacteristic(&ZaxisChar);
-  Serial.println(z);
+
   AccelerometerDescriptor.setValue("Accelerometer value");
   //XaxisChar.addDescriptor(&AccelerometerDescriptor);
   XaxisChar.addDescriptor(new BLE2902());
@@ -63,9 +63,11 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
  x=myIMU.readFloatAccelX();
+ Serial.println(x);
  y=myIMU.readFloatAccelY();
+ Serial.println(y);
  z=myIMU.readFloatAccelZ();
-
+ Serial.println(z);
  //update values and notify client of XaxisChar
   XaxisChar.setValue(x);
   XaxisChar.notify();
