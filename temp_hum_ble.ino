@@ -4,11 +4,9 @@
 #include <BLE2902.h>
 #include <Wire.h>
 
-/// HTS sensor ( ambient Temperature and Humidity)
+/// HTS221 sensor ( ambient Temperature and Humidity)
 
-//int flag=00;
 
-//byte t[8]={00,0,0,0,0,0,0,0};
 #define Addr 0x5F
 bool _BLEClientConnected = false;
 BLEDescriptor HDescriptor(BLEUUID((uint16_t)0x2901));
@@ -292,8 +290,8 @@ void loop()
   Serial.print(fTemp);
   Serial.println(" F");
   delay(2000);
-  HCharacteristic.setValue(humidity);
+  HCharacteristic.setValue(humidity,2);
   HCharacteristic.notify();
-  TCharacteristic.setValue(t,8);
+  TCharacteristic.setValue(cTemp,2);
   TCharacteristic.notify();
 }
