@@ -18,42 +18,42 @@ BLECharacteristic TCharacteristic(BLEUUID((uint16_t)0x2A6E), BLECharacteristic::
 
 
 class MyServerCallbacks : public BLEServerCallbacks {
-	void onConnect(BLEServer* pServer) {
-		_BLEClientConnected = true;
-	};
+  void onConnect(BLEServer* pServer) {
+    _BLEClientConnected = true;
+  };
 
-	void onDisconnect(BLEServer* pServer) {
-		_BLEClientConnected = false;
-	}
+  void onDisconnect(BLEServer* pServer) {
+    _BLEClientConnected = false;
+  }
 };
 
 void InitBLE() {
-	BLEDevice::init("IXIR");
+  BLEDevice::init("IXIR");
 
-	// Create the BLE Server
-	BLEServer *pServer = BLEDevice::createServer();
-	pServer->setCallbacks(new MyServerCallbacks());
+  // Create the BLE Server
+  BLEServer *pServer = BLEDevice::createServer();
+  pServer->setCallbacks(new MyServerCallbacks());
 
-	// Create the BLE Service
-	BLEService *pService = pServer->createService(BLEUUID((uint16_t)0x181A));
+  // Create the BLE Service
+  BLEService *pService = pServer->createService(BLEUUID((uint16_t)0x181A));
 
-	HDescriptor.setValue("Humidity 0 to 100%");
-	TDescriptor.setValue("Temperature -40-60°C");
+  HDescriptor.setValue("Humidity 0 to 100%");
+  TDescriptor.setValue("Temperature -40-60°C");
 
-	HCharacteristic.addDescriptor(&HDescriptor);
-	TCharacteristic.addDescriptor(&TDescriptor);
+  HCharacteristic.addDescriptor(&HDescriptor);
+  TCharacteristic.addDescriptor(&TDescriptor);
 
 
-	// Create a BLE Descriptor
-	HCharacteristic.addDescriptor(new BLE2902());
-	TCharacteristic.addDescriptor(new BLE2902());
+  // Create a BLE Descriptor
+  HCharacteristic.addDescriptor(new BLE2902());
+  TCharacteristic.addDescriptor(new BLE2902());
 
-	pService->addCharacteristic(&HCharacteristic);
-	pService->addCharacteristic(&TCharacteristic);
-	pService->start();
+  pService->addCharacteristic(&HCharacteristic);
+  pService->addCharacteristic(&TCharacteristic);
+  pService->start();
 
-	// Start advertising
-	pServer->getAdvertising()->start();
+  // Start advertising
+  pServer->getAdvertising()->start();
 }
 
 void setup()
@@ -276,9 +276,16 @@ void loop()
   float humidity = (val[1] * 256.0) + val[0];
   humidity = ((1.0 * H1) - (1.0 * H0)) * (1.0 * humidity - 1.0 * H2) / (1.0 * H3 - 1.0 * H2) + (1.0 * H0);
   int temp = (val[3] * 256) + val[2];
-  float cTemp = (((T1 - T0) / 8.0) * (temp - T2)) / (T3 - T2) + (T0 / 8.0);
+  int cTemp = (int)(((T1 - T0) / 8.0) * (temp - T2)) / (T3 - T2) + (T0 / 8.0);
   float fTemp = (cTemp * 1.8 ) + 32;
-  //t[1]=(byte)cTemp;
+   //uint8_t* temper=(uint8_t*)cTemp;
+  int t=(int)(cTemp*100);
+  int h=(int)(humidity*100);
+  //uint8_t* hum=(uint8_t*)h;
+  HCharacteristic.setValue(h);
+  HCharacteristic.notify();
+  TCharacteristic.setValue(t);
+  TCharacteristic.notify();
   // Output data to serial monitor
   Serial.print("Relative humidity : ");
   Serial.print(humidity);
@@ -289,9 +296,8 @@ void loop()
   Serial.print("Temperature in Fahrenheit : ");
   Serial.print(fTemp);
   Serial.println(" F");
-  delay(2000);
-  HCharacteristic.setValue(humidity,2);
-  HCharacteristic.notify();
-  TCharacteristic.setValue(cTemp,2);
-  TCharacteristic.notify();
+
+
+
+   delay(2000);
 }
