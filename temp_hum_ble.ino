@@ -6,9 +6,9 @@
 
 /// HTS sensor ( ambient Temperature and Humidity)
 
-int flag=00;
+//int flag=00;
 
-byte t[8]={00,0,0,0,0,0,0,0};
+//byte t[8]={00,0,0,0,0,0,0,0};
 #define Addr 0x5F
 bool _BLEClientConnected = false;
 BLEDescriptor HDescriptor(BLEUUID((uint16_t)0x2901));
@@ -280,7 +280,7 @@ void loop()
   int temp = (val[3] * 256) + val[2];
   float cTemp = (((T1 - T0) / 8.0) * (temp - T2)) / (T3 - T2) + (T0 / 8.0);
   float fTemp = (cTemp * 1.8 ) + 32;
-  t[1]=(byte)cTemp;
+  //t[1]=(byte)cTemp;
   // Output data to serial monitor
   Serial.print("Relative humidity : ");
   Serial.print(humidity);
