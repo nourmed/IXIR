@@ -46,8 +46,8 @@ void InitBLE() {
   UVDescriptor.setValue("UV index value");
   UVCharacteristic.addDescriptor(&UVDescriptor);
   // Create a BLE Descriptor
-  HCharacteristic.addDescriptor(new BLE2902());
-  TCharacteristic.addDescriptor(new BLE2902());
+  UVCharacteristic.addDescriptor(new BLE2902());
+
 
   pService->addCharacteristic(&UVCharacteristic);
   pService->start();
@@ -85,9 +85,9 @@ void loop()
 
   uv = (msb<<8) | lsb;
   Serial.println(uv, DEC); //output in steps (16bit)
-  uint8_t uvindex=random(1,9);
-  Serial.printnln(uvindex);
-  UVCharacteristic.setValue(uvindex,2);
+  int uvindex=random(1,9);
+  Serial.println(uvindex);
+  UVCharacteristic.setValue(uvindex);
   UVCharacteristic.notify();
   delay(1000);
 }
