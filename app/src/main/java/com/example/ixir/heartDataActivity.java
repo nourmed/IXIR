@@ -1,5 +1,6 @@
 package com.example.ixir;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class heartDataActivity extends AppCompatActivity {
         toolbar =  findViewById(R.id.toolbar2);
         toolbar.setTitle("Santé cardiaque");
         toolbar.setBackgroundColor(Color.argb(255,175,27,63));
+       
         heartView.addSeries(new SeriesItem.Builder(Color.argb(255, 218, 218, 218))
                 .setRange(0, 100, 100)
                 .setInitialVisibility(true)

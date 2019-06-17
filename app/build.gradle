@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.ixir"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,7 @@ repositories {
 
 
 dependencies {
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.github.anastr:speedviewlib:1.1.6'
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:background="@drawable/gradient"
+    tools:context=".SearchActivity">
+
+    <LinearLayout
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:weightSum="100"
+     >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+          android:layout_weight="80"  >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rechercher ..."
+            android:layout_weight="20"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <com.skyfishjy.library.RippleBackground
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:rb_color="#B7E3DE"
+            app:rb_duration="3000"
+            app:rb_radius="50dp"
+            app:rb_rippleAmount="6"
+            app:rb_scale="4">
+
+            <ImageView
+                android:id="@+id/centerImage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/bluetooth" />
+        </com.skyfishjy.library.RippleBackground>
+    </LinearLayout>
+
+</LinearLayout>
