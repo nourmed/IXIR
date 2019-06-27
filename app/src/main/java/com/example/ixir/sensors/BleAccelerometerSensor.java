@@ -42,7 +42,7 @@ public class BleAccelerometerSensor extends BleSensor<float[]> {
     @Override
     public String getCharacteristicName(String uuid) {
         if ("00002FF1-0000-1000-8000-00805f9b34fb".equals(uuid))
-            return getName() + " X axis ";
+            return getName() + " 3-axis ";
         return super.getCharacteristicName(uuid);
     }
 
