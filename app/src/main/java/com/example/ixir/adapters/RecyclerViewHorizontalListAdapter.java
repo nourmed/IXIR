@@ -1,6 +1,5 @@
-package com.example.ixir;
+package com.example.ixir.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.ixir.Item;
+import com.example.ixir.R;
+import com.example.ixir.heartDataActivity;
 
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class RecyclerViewHorizontalListAdapter extends RecyclerView.Adapter<Recy
                     @Override
                     public void onClick(View v) {
 
-                    Intent i=new Intent ( context ,heartDataActivity.class );
+                    Intent i=new Intent ( context , heartDataActivity.class );
                     context.startActivity(i);
             }
         });

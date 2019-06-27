@@ -18,7 +18,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeviceServiceActivity"></activity>
         <activity android:name=".SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +28,8 @@
         <activity android:name=".heartDataActivity" />
         <activity android:name=".firstActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name="DeviceServicesActivity"/>
+        <service android:name=".BleService" android:enabled="true"/>
     </application>
 
 </manifest>

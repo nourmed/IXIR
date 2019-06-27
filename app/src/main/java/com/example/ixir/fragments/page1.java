@@ -1,4 +1,4 @@
-package com.example.ixir;
+package com.example.ixir.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +16,9 @@ import android.view.animation.AlphaAnimation;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.example.ixir.Item;
+import com.example.ixir.R;
+import com.example.ixir.adapters.RecyclerViewHorizontalListAdapter;
 import com.hookedonplay.decoviewlib.DecoView;
 import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.hookedonplay.decoviewlib.events.DecoEvent;

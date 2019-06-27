@@ -1,4 +1,4 @@
-package com.example.ixir;
+package com.example.ixir.sensors;
 
 
 import android.bluetooth.BluetoothGattCharacteristic;

@@ -1,4 +1,4 @@
-package com.example.ixir;
+package com.example.ixir.adapters;
 
 
 import android.support.v4.app.Fragment;

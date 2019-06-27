@@ -16,7 +16,6 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,8 +23,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import com.example.ixir.adapters.deviceAdapter;
 import com.skyfishjy.library.RippleBackground;
 
 import java.util.ArrayList;
@@ -162,9 +161,9 @@ public class SearchActivity extends AppCompatActivity {
                         if (device == null)
                             return;
 
-                       final Intent intent = new Intent(SearchActivity.this, DeviceServiceActivity.class);
-                        intent.putExtra(DeviceServiceActivity.EXTRAS_DEVICE_NAME, device.getName());
-                        intent.putExtra(DeviceServiceActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+                       final Intent intent = new Intent(SearchActivity.this, DeviceServicesActivity.class);
+                        intent.putExtra(DeviceServicesActivity.EXTRAS_DEVICE_NAME, device.getName());
+                        intent.putExtra(DeviceServicesActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
                         startActivity(intent);
                     }
                 }
@@ -181,6 +180,7 @@ public class SearchActivity extends AppCompatActivity {
             String deviceName = "";
             try {
                 deviceName = result.getScanRecord().getDeviceName();
+
             } catch (NullPointerException e) {
                 Log.e("debug", "Device-Name could not be read!");
             }
@@ -234,7 +234,7 @@ public class SearchActivity extends AppCompatActivity {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                btScanner.startScan(leScanCallback);
+                    btScanner.startScan(leScanCallback);
 
             }
         });

@@ -14,6 +14,9 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.example.ixir.sensors.BleSensor;
+import com.example.ixir.sensors.BleSensors;
+
 import java.util.List;
 
 
@@ -88,6 +91,7 @@ public class BleService extends Service {
 
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 final BleSensor<?> sensor = BleSensors.getSensor(characteristic.getService().getUuid().toString());
+                System.out.println(characteristic.getService().getUuid().toString());
                 if (sensor != null) {
                     if (sensor.onCharacteristicRead(characteristic)) {
                         return;
@@ -123,6 +127,7 @@ public class BleService extends Service {
             sensor.onCharacteristicChanged(characteristic);
             final String text = sensor.getDataString();
             intent.putExtra(EXTRA_TEXT, text);
+            System.out.println(text);
             sendBroadcast(intent);
         } else {
             // For all other profiles, writes the data formatted in HEX.
@@ -131,6 +136,7 @@ public class BleService extends Service {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
                 for (byte byteChar : data)
                     stringBuilder.append(String.format("%02X ", byteChar));
+                System.out.println(new String(data));
                 intent.putExtra(EXTRA_TEXT, new String(data) + "\n" + stringBuilder.toString());
             }
         }

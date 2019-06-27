@@ -1,10 +1,12 @@
-package com.example.ixir;
+package com.example.ixir.sensors;
 
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.util.Log;
+
+import com.example.ixir.BluetoothGattExecutor;
 
 import java.util.UUID;
 
