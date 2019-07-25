@@ -9,8 +9,7 @@
 byte flags = 0b00111110;
 byte bpm;
 byte heart[8] = { 0b00001110, 60, 0, 0, 0 , 0, 0, 0};
-int delai=100;
-byte tempFlag = 00;
+//byte tempFlag = 00;
 byte temp[8]={00,0,0,0,0,0,0,0};
 //initiate connection state
 bool _BLEClientConnected = false;

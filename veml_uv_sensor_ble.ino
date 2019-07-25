@@ -57,10 +57,9 @@ void InitBLE() {
 void setup()
 {
   Serial.begin(9600);
-  while(!Serial); //wait for serial port to connect (needed for Leonardo only)
+  //while(!Serial); //wait for serial port to connect (needed for Leonardo only)
 
   Wire.begin();
-
   Wire.beginTransmission(I2C_ADDR);
   Wire.write((IT_1<<2) | 0x02);
   Wire.endTransmission();
