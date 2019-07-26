@@ -1,4 +1,3 @@
-
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
@@ -84,7 +83,7 @@ temp[1]=(byte)t;
   healthThermMeasurementCharacteristics.setValue(temp,8);
   healthThermMeasurementCharacteristics.notify();
 //set temp delay
- measrementItervalOfTemp.setValue(delai);
- measrementItervalOfTemp.notify();
+ //measrementItervalOfTemp.setValue(delai);
+ //measrementItervalOfTemp.notify();
   delay(1000);
 }

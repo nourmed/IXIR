@@ -16,7 +16,8 @@ byte bpm;
 byte heart[8] = { 0b00001110, 60, 0, 0, 0 , 0, 0, 0};
 //bodyTempServicevariables
 byte tempFlag = 00;
-byte temp[8]={00,0,0,0,0,0,0,0};
+byte t;
+byte tempb[8]={00,0,0,0,0,0,0,0};
 //ultravioletSensor variables
 #define I2C_ADDR 0x38 //0x38 and 0x39
 #define IT_1_2 0x0 //1/2T
@@ -27,7 +28,7 @@ byte temp[8]={00,0,0,0,0,0,0,0};
 #define Addr 0x5F
 //LIS3DH sensor variables
 LIS3DH myIMU( I2C_MODE, 0x18 );
-
+int delai=1000;
 //BLEServices
 //heartRateService (Characteristics&Descriptors)
 #define heartRateService BLEUUID((uint16_t)0x180D)
@@ -147,9 +148,10 @@ void loop() {
 bpm=random(60,190);
 heart[1] = (byte)bpm;
 Serial.println(bpm);
-int t=random(36,40);
+t=random(36,40);
 Serial.println(t);
-temp[1]=(byte)t;
+//byte t=(byte)temperatureh;
+tempb[1]=(byte)t;
 //veml6070
 byte msb=0, lsb=0;
 uint16_t uv;
@@ -363,12 +365,12 @@ int temp = (val[3] * 256) + val[2];
 int cTemp = (int)(((T1 - T0) / 8.0) * (temp - T2)) / (T3 - T2) + (T0 / 8.0);
 float fTemp = (cTemp * 1.8 ) + 32;
  //uint8_t* temper=(uint8_t*)cTemp;
-int t=(int)(cTemp*100);
+int te=(int)(cTemp*100);
 int h=(int)(humidity*100);
 //uint8_t* hum=(uint8_t*)h;
 HCharacteristic.setValue(h);
 HCharacteristic.notify();
-TCharacteristic.setValue(t);
+TCharacteristic.setValue(te);
 TCharacteristic.notify();
 // Output data to serial monitor
 Serial.print("Relative humidity : ");
@@ -405,7 +407,7 @@ UVCharacteristic.notify();
   heartRateMeasurementCharacteristics.setValue(heart,8);
   heartRateMeasurementCharacteristics.notify();
 //update values and notify client of HT mesurements
-  healthThermMeasurementCharacteristics.setValue(temp,8);
+  healthThermMeasurementCharacteristics.setValue(tempb,8);
   healthThermMeasurementCharacteristics.notify();
 //set temp delay
  measrementItervalOfTemp.setValue(delai);
