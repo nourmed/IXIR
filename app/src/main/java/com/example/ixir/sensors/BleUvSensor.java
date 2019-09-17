@@ -2,34 +2,51 @@ package com.example.ixir.sensors;
 
 import android.bluetooth.BluetoothGattCharacteristic;
 
-public class BleUvSensor extends BleSensor<Float[]> {
+public class BleUvSensor extends BleSensor<float[]> {
     @Override
     public String getName() {
-        return null;
+        return "UV sensor";
     }
 
     @Override
     public String getServiceUUID() {
-        return null;
+        return "0000181A-0000-1000-8000-00805f9b34fb";
     }
 
     @Override
     public String getDataUUID() {
+        return "00002A76-0000-1000-8000-00805f9b34fb";
+    }
+
+    @Override
+    public String getDatayUUID() {
+        return null;
+    }
+
+    @Override
+    public String getDatazUUID() {
         return null;
     }
 
     @Override
     public String getConfigUUID() {
-        return null;
+        return "00002902-0000-1000-8000-00805f9b34fb";
     }
 
     @Override
     public String getDataString() {
-        return null;
+        final float[] data = getData();
+        return "UV=" + data[0] ;
     }
 
     @Override
-    protected Float[] parse(BluetoothGattCharacteristic c) {
-        return new Float[0];
+    protected float[] parse(BluetoothGattCharacteristic c) {
+
+        byte[] value =  c.getValue();
+
+        final float[] values = getData();
+        values[0]= (float) value[0];
+
+        return values;
     }
 }

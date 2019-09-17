@@ -2,10 +2,10 @@ package com.example.ixir.sensors;
 
 import android.bluetooth.BluetoothGattCharacteristic;
 
-public class BleBodyTempSensor extends BleSensor<Float[]> {
+public class BleBodyTempSensor extends BleSensor<float[]> {
     @Override
     public String getName() {
-        return null;
+        return "Body Temperature";
     }
 
     @Override
@@ -19,8 +19,19 @@ public class BleBodyTempSensor extends BleSensor<Float[]> {
     }
 
     @Override
-    public String getConfigUUID() {
+    public String getDatayUUID() {
         return null;
+    }
+
+    @Override
+    public String getDatazUUID() {
+        return null;
+    }
+
+    @Override
+    public String getConfigUUID() {
+        return
+                "00002902-0000-1000-8000-00805f9b34fb";
     }
 
     @Override
@@ -29,7 +40,7 @@ public class BleBodyTempSensor extends BleSensor<Float[]> {
     }
 
     @Override
-    protected Float[] parse(BluetoothGattCharacteristic c) {
+    protected float[] parse(BluetoothGattCharacteristic c) {
         return null;
     }
 }

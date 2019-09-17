@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -26,6 +27,7 @@ repositories {
 
 
 dependencies {
+    implementation 'org.tensorflow:tensorflow-android:+'
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.github.anastr:speedviewlib:1.1.6'

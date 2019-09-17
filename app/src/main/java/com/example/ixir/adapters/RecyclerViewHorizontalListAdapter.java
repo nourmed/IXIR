@@ -37,14 +37,17 @@ public class RecyclerViewHorizontalListAdapter extends RecyclerView.Adapter<Recy
     public void onBindViewHolder(GroceryViewHolder holder, final int position) {
         holder.imageView.setImageResource(horizontalGrocderyList.get(position).getProductImage());
         holder.txtview.setText(horizontalGrocderyList.get(position).getProductName());
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+        if (horizontalGrocderyList.get(position).getProductImage()==R.drawable.cardiaque) {
+         /*   holder.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                    Intent i=new Intent ( context , heartDataActivity.class );
+                    Intent i = new Intent(context, heartDataActivity.class);
+
                     context.startActivity(i);
-            }
-        });
+                }
+            });*/
+        }
     }
 
 

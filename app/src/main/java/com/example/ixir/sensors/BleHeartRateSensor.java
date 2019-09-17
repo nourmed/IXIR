@@ -43,6 +43,16 @@ public class BleHeartRateSensor extends BleSensor<float[]> {
 		return "00002a37-0000-1000-8000-00805f9b34fb";
 	}
 
+	@Override
+	public String getDatayUUID() {
+		return null;
+	}
+
+	@Override
+	public String getDatazUUID() {
+		return null;
+	}
+
 	public static String getDataUUIDString() {
 		return "00002a37-0000-1000-8000-00805f9b34fb";
 	}
@@ -76,7 +86,7 @@ public class BleHeartRateSensor extends BleSensor<float[]> {
 	@Override
 	public String getDataString() {
 		final float[] data = getData();
-		return "heart rate=" + data[0] + "\ninterval=" + data[1];
+		return  data[0]+"";
 	}
 
 	@Override

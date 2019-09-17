@@ -13,6 +13,7 @@ public class BleSensors {
     static {
         final BleHeartRateSensor heartRateSensor = new BleHeartRateSensor();
         final BleAccelerometerSensor accelerometerSensor = new BleAccelerometerSensor();
+
         final BleTempratureSensor ambiantTempSensor = new BleTempratureSensor();
         final BleHumiditySensor HumiditySensor = new BleHumiditySensor();
         final BleBodyTempSensor bodyTempSensor = new BleBodyTempSensor();
@@ -21,9 +22,9 @@ public class BleSensors {
         SENSORS.put(bodyTempSensor.getServiceUUID(), bodyTempSensor);
         SENSORS.put(UvSensor.getServiceUUID(), UvSensor);
         SENSORS.put(HumiditySensor.getServiceUUID(), HumiditySensor);
-        SENSORS.put(accelerometerSensor.getServiceUUID(), accelerometerSensor);
-        SENSORS.put(heartRateSensor.getServiceUUID(), heartRateSensor);
         SENSORS.put(ambiantTempSensor.getServiceUUID(), ambiantTempSensor);
+        SENSORS.put(heartRateSensor.getServiceUUID(), heartRateSensor);
+        SENSORS.put(accelerometerSensor.getServiceUUID(), accelerometerSensor);
     }
 
     public static BleSensor<?> getSensor(String uuid) {

@@ -13,4 +13,11 @@
     <color name="ixirBlue">#30bced</color>
     <color name="gray">#DADADA</color>
     <color name="darkgray">#9F9F9F</color>
+    <color name="darkblue">#221D41</color>
+    <color name="darkmint">#D9E76C</color>
+    <color name="bordeau">#4C061D</color>
+    <color name="orange">#F75C03</color>
+    <color name="heartpink">#C5283D</color>
+    <color name="secondorange">#FE938C</color>
+    <color name="PINKi">#E32963</color>
 </resources>

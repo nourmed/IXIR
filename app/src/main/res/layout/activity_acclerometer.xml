@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <ScrollView android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TableLayout android:layout_height="wrap_content" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android" tools:context="io.github.introml.activityrecognition.MainActivity" android:padding="22dp" android:background="#ededed">
+
+
+    <TableRow android:layout_height="match_parent" android:layout_width="match_parent" android:padding="22dp" android:textAlignment="center" android:id="@+id/title_row">
+
+    <TextView android:textAlignment="center" android:id="@+id/title" android:textStyle="bold|italic" android:textSize="20sp" android:text="activity" android:layout_weight="1"/>
+
+    <TextView android:textAlignment="center" android:id="@+id/textView" android:textStyle="bold|italic" android:textSize="20sp" android:text="probability" android:layout_weight="1"/>
+
+</TableRow>
+
+
+    -<TableRow android:layout_height="fill_parent" android:layout_width="fill_parent" android:padding="22dp" android:id="@+id/downstairs_row">
+
+    <TextView android:textAlignment="center" android:id="@+id/downstairs_title" android:textStyle="bold" android:textSize="18sp" android:text="downstairs" android:layout_weight="1"/>
+
+    <TextView android:textAlignment="center" android:id="@+id/downstairs_prob" android:textSize="18sp" android:layout_weight="1"/>
+
+</TableRow>
+
+
+    -<TableRow android:layout_height="fill_parent" android:layout_width="fill_parent" android:padding="22dp" android:id="@+id/jogging_row">
+
+    <TextView android:textAlignment="center" android:id="@+id/jogging_title" android:textStyle="bold" android:textSize="18sp" android:text="jogging" android:layout_weight="1"/>
+
+    <TextView android:textAlignment="center" android:id="@+id/jogging_prob" android:textSize="18sp" android:layout_weight="1"/>
+
+</TableRow>
+
+
+    -<TableRow android:layout_height="fill_parent" android:layout_width="fill_parent" android:padding="22dp" android:id="@+id/sitting_row">
+
+    <TextView android:textAlignment="center" android:id="@+id/sitting_title" android:textStyle="bold" android:textSize="18sp" android:text="sitting" android:layout_weight="1"/>
+
+    <TextView android:textAlignment="center" android:id="@+id/sitting_prob" android:textSize="18sp" android:layout_weight="1"/>
+
+</TableRow>
+
+
+    -<TableRow android:layout_height="fill_parent" android:layout_width="fill_parent" android:padding="22dp" android:id="@+id/standing_row">
+
+    <TextView android:textAlignment="center" android:id="@+id/standing_title" android:textStyle="bold" android:textSize="18sp" android:text="standing" android:layout_weight="1"/>
+
+    <TextView android:textAlignment="center" android:id="@+id/standing_prob" android:textSize="18sp" android:layout_weight="1"/>
+
+</TableRow>
+
+
+    -<TableRow android:layout_height="match_parent" android:layout_width="match_parent" android:padding="22dp" android:id="@+id/upstairs_row">
+
+    <TextView android:textAlignment="center" android:id="@+id/upstairs_title" android:textStyle="bold" android:textSize="18sp" android:text="upstairs" android:layout_weight="1"/>
+
+    <TextView android:textAlignment="center" android:id="@+id/upstairs_prob" android:textSize="18sp" android:layout_weight="1"/>
+
+</TableRow>
+
+
+    -<TableRow android:layout_height="match_parent" android:layout_width="match_parent" android:padding="22dp" android:id="@+id/walking_row">
+
+    <TextView android:textAlignment="center" android:id="@+id/walking_title" android:textStyle="bold" android:textSize="18sp" android:text="walking" android:layout_weight="1"/>
+
+    <TextView android:textAlignment="center" android:id="@+id/walking_prob" android:textSize="18sp" android:layout_weight="1"/>
+
+</TableRow>
+
+</TableLayout>
+
+</ScrollView>

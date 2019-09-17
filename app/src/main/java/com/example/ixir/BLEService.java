@@ -88,10 +88,10 @@ public class BleService extends Service {
                                          BluetoothGattCharacteristic characteristic,
                                          int status) {
             super.onCharacteristicRead(gatt, characteristic, status);
-
+                //System.out.println("chara"+ characteristic);
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 final BleSensor<?> sensor = BleSensors.getSensor(characteristic.getService().getUuid().toString());
-                System.out.println(characteristic.getService().getUuid().toString());
+
                 if (sensor != null) {
                     if (sensor.onCharacteristicRead(characteristic)) {
                         return;
@@ -116,6 +116,8 @@ public class BleService extends Service {
         sendBroadcast(intent);
     }
 
+
+
     private void broadcastUpdate(final String action,
                                  final BluetoothGattCharacteristic characteristic) {
         final Intent intent = new Intent(action);
@@ -126,8 +128,10 @@ public class BleService extends Service {
         if (sensor != null) {
             sensor.onCharacteristicChanged(characteristic);
             final String text = sensor.getDataString();
+        //    System.out.println("data: "+text);
+            intent.putExtra(EXTRA_CHARACTERISTIC_UUID,characteristic.getUuid().toString());
             intent.putExtra(EXTRA_TEXT, text);
-            System.out.println(text);
+
             sendBroadcast(intent);
         } else {
             // For all other profiles, writes the data formatted in HEX.
@@ -136,7 +140,7 @@ public class BleService extends Service {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
                 for (byte byteChar : data)
                     stringBuilder.append(String.format("%02X ", byteChar));
-                System.out.println(new String(data));
+                //System.out.println(new String(data));
                 intent.putExtra(EXTRA_TEXT, new String(data) + "\n" + stringBuilder.toString());
             }
         }

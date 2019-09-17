@@ -9,12 +9,12 @@
     android:paddingLeft="38dp"
     android:paddingTop="20dp"
     android:paddingRight="38dp"
-    android:paddingBottom="20dp">
+    android:paddingBottom="30dp">
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_marginTop="15dp" />
 
     <TextView

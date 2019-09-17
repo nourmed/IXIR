@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,12 +47,13 @@ public class SearchActivity extends AppCompatActivity {
     private final static int REQUEST_ENABLE_BT = 1;
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
 
+    final private int COLOR_BLUE = Color.parseColor("#1D76D2");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
-
+       Window Wwndow= this.getWindow();
+        getWindow().setStatusBarColor(COLOR_BLUE);
         bluetooth= findViewById(R.id.searchView);
         list= findViewById(R.id.listView);
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -161,9 +164,10 @@ public class SearchActivity extends AppCompatActivity {
                         if (device == null)
                             return;
 
-                       final Intent intent = new Intent(SearchActivity.this, DeviceServicesActivity.class);
-                        intent.putExtra(DeviceServicesActivity.EXTRAS_DEVICE_NAME, device.getName());
-                        intent.putExtra(DeviceServicesActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+                       final Intent intent = new Intent(SearchActivity.this,firstActivity.class);
+                        intent.putExtra(firstActivity.EXTRAS_DEVICE_NAME, device.getName());
+                        intent.putExtra(firstActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+
                         startActivity(intent);
                     }
                 }

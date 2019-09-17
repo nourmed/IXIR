@@ -33,6 +33,8 @@ public abstract class BleSensor<T> {
 
     public abstract String getServiceUUID();
     public abstract String getDataUUID();
+    public abstract String getDatayUUID();
+    public abstract String getDatazUUID();
     public abstract String getConfigUUID();
 
     public boolean isConfigUUID(String uuid) {
@@ -62,7 +64,7 @@ public abstract class BleSensor<T> {
     public BluetoothGattExecutor.ServiceAction[] enable(final boolean enable) {
         return new BluetoothGattExecutor.ServiceAction[] {
                 write(getConfigUUID(), getConfigValues(enable)),
-                notify(enable)
+                notify(enable),notifyy(enable),notifyz(enable)
         };
     }
 
@@ -106,20 +108,69 @@ public abstract class BleSensor<T> {
                 final UUID CCC = UUID.fromString(CHARACTERISTIC_CONFIG);
 
                 final BluetoothGattCharacteristic dataCharacteristic = getCharacteristic(bluetoothGatt, getDataUUID());
+
                 final BluetoothGattDescriptor config = dataCharacteristic.getDescriptor(CCC);
+
                 if (config == null)
                     return true;
 
                 // enable/disable locally
                 bluetoothGatt.setCharacteristicNotification(dataCharacteristic, start);
+
                 // enable/disable remotely
                 config.setValue(start ? BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE : BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
                 bluetoothGatt.writeDescriptor(config);
+
                 return false;
             }
         };
     }
 
+    public BluetoothGattExecutor.ServiceAction notifyy(final boolean start) {
+        return new BluetoothGattExecutor.ServiceAction() {
+            @Override
+            public boolean execute(BluetoothGatt bluetoothGatt) {
+                final UUID CCC = UUID.fromString(CHARACTERISTIC_CONFIG);
+
+                final BluetoothGattCharacteristic dataCharacteristicy = getCharacteristic(bluetoothGatt, getDatayUUID());
+
+                final BluetoothGattDescriptor config1 = dataCharacteristicy.getDescriptor(CCC);
+
+
+                // enable/disable locally
+                bluetoothGatt.setCharacteristicNotification(dataCharacteristicy, start);
+
+                // enable/disable remotely
+
+                config1.setValue(start ? BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE : BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
+                bluetoothGatt.writeDescriptor(config1);
+
+                return false;
+            }
+        };
+    }
+
+    public BluetoothGattExecutor.ServiceAction notifyz(final boolean start) {
+        return new BluetoothGattExecutor.ServiceAction() {
+            @Override
+            public boolean execute(BluetoothGatt bluetoothGatt) {
+                final UUID CCC = UUID.fromString(CHARACTERISTIC_CONFIG);
+
+                final BluetoothGattCharacteristic dataCharacteristicz = getCharacteristic(bluetoothGatt, getDatazUUID());
+                System.out.println("ccccc"+dataCharacteristicz);
+                final BluetoothGattDescriptor config2 = dataCharacteristicz.getDescriptor(CCC);
+                System.out.println("caaaa"+config2);
+
+                // enable/disable locally
+                bluetoothGatt.setCharacteristicNotification(dataCharacteristicz, start);
+                // enable/disable remotely
+
+                config2.setValue(start ? BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE : BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
+                bluetoothGatt.writeDescriptor(config2);
+                return false;
+            }
+        };
+    }
     private BluetoothGattCharacteristic getCharacteristic(BluetoothGatt bluetoothGatt, String uuid) {
         final UUID serviceUuid = UUID.fromString(getServiceUUID());
         final UUID characteristicUuid = UUID.fromString(uuid);
