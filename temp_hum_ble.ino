@@ -239,10 +239,8 @@ void loop()
     Wire.write((62 + i));
     // Stop I2C Transmission
     Wire.endTransmission();
-
     // Request 1 byte of data
     Wire.requestFrom(Addr,1);
-
     // Read 1 byte of data
     if(Wire.available() == 1)
     {
@@ -251,17 +249,14 @@ void loop()
   }
   // Convert the data
   T3 = (data[1] * 256.0) + data[0];
-
   // Start I2C Transmission
   Wire.beginTransmission(Addr);
   // Send data register
   Wire.write(0x28 | 0x80);
   // Stop I2C Transmission
   Wire.endTransmission();
-
-  // Request 4 bytes of data
+ // Request 4 bytes of data
   Wire.requestFrom(Addr,4);
-
   // Read 4 bytes of data
   // humidity msb, humidity lsb, temp msb, temp lsb
   if(Wire.available() == 4)
@@ -271,7 +266,6 @@ void loop()
     val[2] = Wire.read();
     val[3] = Wire.read();
   }
-
   // Convert the data
   float humidity = (val[1] * 256.0) + val[0];
   humidity = ((1.0 * H1) - (1.0 * H0)) * (1.0 * humidity - 1.0 * H2) / (1.0 * H3 - 1.0 * H2) + (1.0 * H0);
