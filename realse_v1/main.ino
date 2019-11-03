@@ -2,20 +2,9 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <WiFi.h>
-#include <NTPClient.h>
-#include <WiFiUdp.h>
+#include "wifi-connection.h"
 
-//wifi credential
-const char* ssid     = "TT-Wingle-04C6";
-const char* password = "NHEY3tJj";
-// Define NTP Client to get time
-WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP);
-//define time variables
-String formattedDate;
-String dayStamp;
-String timeStamp;
+
 const int buttonPin = 2;
 int counter = 0;
 #define OLED_RESET 4
@@ -44,11 +33,7 @@ void setup()
     display.display();//start display
     delay(2000);
     ////end display logo
-   ////connect to wifi
-    WiFi.begin(ssid,password);
-    while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-   }
+
 
 }
 void loop()
@@ -56,6 +41,8 @@ void loop()
   int buttonState;
   ///read button state
   buttonState = digitalRead(buttonPin);
+
+
  ///count button press
   if (buttonState == HIGH)
   {
@@ -66,8 +53,19 @@ void loop()
   if (counter == 0)
   {
     Serial.println("menu 0");
-   //display.clearDisplay(); //for Clearing the display
-    //display.display();
+    display.clearDisplay();
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
+    display.setCursor(0,0);
+    display.print(time(1));
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
+    display.setCursor(40,15);
+    display.print(timeStamp);
+    display.setCursor(100,0);
+    display.print(battery_voltage);
+    display.print("%");
+    display.display();
   }
 
  else if (counter == 1)//menu 1 heart rate
