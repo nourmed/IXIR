@@ -6,10 +6,10 @@
 #include <BLE2902.h>
 
  int16_t Addr ;
- int arg;
+ int arg1;
 
 
-byte return_hts221( int16_t Addr,int arg)
+byte return_hts221( int16_t Addr,int arg1)
 {
  byte value[8]={0,0,0,0,0,0,0,0};
   unsigned int data[2];
@@ -224,10 +224,10 @@ byte return_hts221( int16_t Addr,int arg)
 
 value[0]=cTemp;
 value[1]=humidity;
-if ( arg==1)
+if ( arg1==1)
 { return value[0];
   }
-  else if (arg==2){return value[1];}
+  else if (arg1==2){return value[1];}
 
 
 

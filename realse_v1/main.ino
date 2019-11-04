@@ -3,7 +3,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include "wifi-connection.h"
-
+#include "hts221.h"
 
 const int buttonPin = 2;
 int counter = 0;
@@ -51,7 +51,7 @@ void loop()
   }
 
   if (counter == 0)
-  {
+  {////display time and date
     Serial.println("menu 0");
     display.clearDisplay();
     display.setTextSize(1);
@@ -98,26 +98,42 @@ void loop()
  display.display();
   }
 
- else if (counter == 3)
+ else if (counter == 3)///menu 3 temperature
  {
- Serial.println("menu 3");
- display.clearDisplay();
-display.drawBitmap(0, 0, uv, 128, 32, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+  Serial.println("menu 3");
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.setCursor(50,10);
+  display.print(t);
+  display.print("C");
+  display.drawBitmap(0, 8, tempH, 80, 20, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
   display.display();
   }
- else if (counter == 4)
+ else if (counter == 4)/// menu 4 humidity
  {
- Serial.println("menu 4");
- display.clearDisplay();
-display.drawBitmap(10, 10, spo3, 32, 16, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
-  display.display();
+   Serial.println("menu 4");
+   display.clearDisplay();
+   display.setTextSize(2);
+   display.setTextColor(WHITE);
+   display.setCursor(50,10);
+   display.print(h);
+   display.print("%");
+   display.drawBitmap(0, 5, hum, 90, 30, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+   display.display();
+   delay(1000);
   }
- else if (counter == 5)
+ else if (counter == 5)/// menu 5 uv
  {
- Serial.println("menu 5");
- display.clearDisplay();
-display.drawBitmap(0, 0, spo4, 128, 32, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
-  display.display();
+   Serial.println("menu 5");
+   display.clearDisplay();
+   int uvi=random(3,4);
+   display.setTextSize(2);
+   display.setTextColor(WHITE);
+   display.setCursor(50,10);
+   display.print(uvi);
+   display.drawBitmap(0, 5, uv, 100, 30, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
+   display.display();
   }
   else
   {
