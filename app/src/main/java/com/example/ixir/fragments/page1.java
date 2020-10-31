@@ -41,8 +41,10 @@ import com.example.ixir.SearchActivity;
 import com.example.ixir.TensorflowClassifier;
 import com.example.ixir.adapters.RecyclerViewHorizontalListAdapter;
 import com.example.ixir.adapters.deviceAdapter;
+import com.example.ixir.enviromental;
 import com.example.ixir.firstActivity;
 import com.example.ixir.heartDataActivity;
+import com.example.ixir.physical;
 import com.example.ixir.sensors.BleAccelerometerSensor;
 import com.example.ixir.sensors.BleHeartRateSensor;
 import com.example.ixir.sensors.BleSensor;
@@ -56,8 +58,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-
-import static android.content.Context.BIND_AUTO_CREATE;
 
 public class page1 extends DemoSensorFragment {
     private final static String TAG = firstActivity.class.getSimpleName();
@@ -135,7 +135,7 @@ public class page1 extends DemoSensorFragment {
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_main);
         toolbar.setTitle("Ixir");
-        toolbar.setTitleTextColor(Color.argb(255,249,248,248));
+        toolbar.setTitleTextColor(Color.argb(255,48,188,237));
 
 
 
@@ -147,7 +147,7 @@ public class page1 extends DemoSensorFragment {
                 .setInitialVisibility(true)
                 .setLineWidth(6f)
                 .build());
-        SeriesItem seriesItem1 = new SeriesItem.Builder(Color.argb(180, 254, 156, 150))
+        SeriesItem seriesItem1 = new SeriesItem.Builder(Color.argb(180, 227, 41, 99))
                 .setRange(0, 10000, 0)
                 .setLineWidth(15f)
                 .build();
@@ -161,7 +161,18 @@ public class page1 extends DemoSensorFragment {
         imgView.setVisibility(View.INVISIBLE);
 
 
+        arcView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), BleAccActivity.class);
+                intent.putExtra(BleAccActivity.EXTRAS_DEVICE_NAME, DeviceName);
+                intent.putExtra(BleAccActivity.EXTRAS_DEVICE_ADDRESS, DeviceAdress);
+                intent.putExtra(BleAccActivity.EXTRAS_STEP_COUNT, stepCount + "");
+                startActivity(intent);
 
+
+            }
+        });
 //      Second circle KM
 /*
         KmView.addSeries(new SeriesItem.Builder(Color.argb(255, 218, 218, 218))
@@ -260,14 +271,29 @@ public class page1 extends DemoSensorFragment {
                              return;
                         System.out.println("item:  "+icon.getProductName());
 
-                        if (icon.getProductName().equals("Cardiologie"))
+                        if (icon.getProductName().equals("Cardiology"))
                         {
                             final Intent intent = new Intent(getActivity(),heartDataActivity.class);
-                             intent.putExtra(heartDataActivity.EXTRA_SERVICE_UUID,"0000180d-0000-1000-8000-00805f9b34fb");
-                                intent.putExtra(heartDataActivity.EXTRAS_DEVICE_ADDRESS, deviceAddress);
+
                             startActivity(intent);
-                        }}
+                        }
+
+                            if (icon.getProductName().equals("Enviroment"))
+                            {
+                                final Intent intent = new Intent(getActivity(), enviromental.class);
+                                startActivity(intent);
+                            }
+                            if (icon.getProductName().equals("Physical health"))
+                            {
+                                final Intent intent = new Intent(getActivity(), physical.class);
+                                startActivity(intent);
+                            }}
+
+
+
+
                 }
+
         );
 
 
@@ -285,10 +311,10 @@ public class page1 extends DemoSensorFragment {
     }
 
     private void populategroceryList(){
-        Item item1 = new Item("Cardiologie", R.drawable.cardiaque);
-       Item item2 = new Item("Activités Sportives",  R.drawable.sport);
-       Item item3 = new Item("Nutrition Et Hydratation",  R.drawable.food);
-       Item item4 = new Item( "Sommeil", R.drawable.sleep);
+        Item item1 = new Item("Cardiology", R.drawable.cardiaque);
+       Item item2 = new Item("Enviroment",  R.drawable.enviroment);
+       Item item3 = new Item("Physical health",  R.drawable.physicalhealth);
+       Item item4 = new Item( "Sleep", R.drawable.sleep);
         List.add(item1);
       List.add(item2);
         List.add(item3);
@@ -395,25 +421,14 @@ public class page1 extends DemoSensorFragment {
                     stepCount++;
                     System.out.print("steps:= " + stepCount);
                     values = activityPrediction();
-                    counter.setText(stepCount + " pas");
+                    counter.setText(2000 + " pas");
                     arcView.addEvent(new DecoEvent.Builder(stepCount)
                             .setIndex(series1Index)
                             .setDelay(1000)
                             .setDuration(2000)
                             .build());
 
-                    arcView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getContext(), BleAccActivity.class);
-                            intent.putExtra(BleAccActivity.EXTRAS_DEVICE_NAME, DeviceName);
-                            intent.putExtra(BleAccActivity.EXTRAS_DEVICE_ADDRESS, DeviceAdress);
-                            intent.putExtra(BleAccActivity.EXTRAS_STEP_COUNT, stepCount + "");
-                            startActivity(intent);
 
-
-                        }
-                    });
 
                 }
                 PREVIOUS_STATE = CURRENT_STATE;
@@ -432,7 +447,7 @@ public class page1 extends DemoSensorFragment {
     @Override
     public void onResume() {
         super.onResume();
-        addAnimation(arcView, series1Index, stepCount, 100, imgView, R.drawable.footprint, COLOR_BLUE);
+        addAnimation(arcView, series1Index, 2000, 100, imgView, R.drawable.footprint, R.color.PINKi);
 
 
        // prev = lowPassFilter(,prev);

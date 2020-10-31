@@ -42,7 +42,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="2000pas"
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,7 +64,8 @@
                     android:id="@+id/cals"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="124cal"
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -84,7 +86,8 @@
                     android:id="@+id/distance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="1.25 Km"
+                    android:textAlignment="center" />
             </LinearLayout>
 
         </LinearLayout>

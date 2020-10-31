@@ -75,7 +75,7 @@ public class heartDataActivity extends AppCompatActivity {
 
         toolbar =
                 findViewById(R.id.toolbar2);
-        toolbar.setTitle("Santé cardiaque");
+        toolbar.setTitle("My Heart");
         toolbar.setBackgroundColor(Color.argb(255, 175, 27, 63));
 
 
@@ -93,9 +93,7 @@ public class heartDataActivity extends AppCompatActivity {
 
         final Intent intent = getIntent();
 
-        deviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
-        System.out.println("deviceadress:  "+deviceAddress);
-        service="0000180d-0000-1000-8000-00805f9b34fb";
+    /**    service="0000180d-0000-1000-8000-00805f9b34fb";
      // Sets up UI references.
         bundle = new Bundle();
         bundle.putString("service", service);
@@ -104,7 +102,7 @@ public class heartDataActivity extends AppCompatActivity {
 
         System.out.println(deviceAddress);
       mesureFragment.setArguments(bundle);
-        //statisf.setArguments(bundle);
+        //statisf.setArguments(bundle);**/
         setViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -131,8 +129,8 @@ public class heartDataActivity extends AppCompatActivity {
     private void setViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(mesureFragment, "mesure");
-        adapter.addFragment(statisf, "statistique");
+        adapter.addFragment(mesureFragment, "Mesurements");
+        adapter.addFragment(statisf, "Statistics");
         viewPager.setAdapter(adapter);
     }
 

@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,6 +32,8 @@ import com.skyfishjy.library.RippleBackground;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+
+import static android.graphics.drawable.ClipDrawable.VERTICAL;
 
 public class SearchActivity extends AppCompatActivity {
     BluetoothManager btManager;
@@ -70,6 +73,8 @@ public class SearchActivity extends AppCompatActivity {
         btAdapter = btManager.getAdapter();
         btScanner = btAdapter.getBluetoothLeScanner();
 
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
 
         startScanning();
@@ -86,7 +91,7 @@ public class SearchActivity extends AppCompatActivity {
                         list.setVisibility(View.VISIBLE);
                     bluetooth.setVisibility(View.GONE);
 
-                        deviceAdapter adapter = new deviceAdapter(bleDevices);
+                               deviceAdapter adapter = new deviceAdapter(bleDevices);
                         System.out.println(bleDevices);
                         // Attach the adapter to the recyclerview to populate items
                         recyclerView.setAdapter(adapter);

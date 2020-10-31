@@ -10,6 +10,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -80,7 +81,7 @@ public abstract class DemoSensorFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
         if (getArguments() != null) {
             deviceAddress = getArguments().getString("adress");
             serviceUuid = getArguments().getString("service");

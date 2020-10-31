@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ixir">
 
     <uses-feature
@@ -16,15 +17,21 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".BleAccActivity"></activity>
+        android:theme="@style/AppTheme"
+        tools:overrideLibrary="androidx.core">
+        <activity android:name=".thakyouActivity"></activity>
+        <activity android:name=".purshaseActivity" />
+        <activity android:name=".ChoiceActivity" />
+        <activity android:name=".physical" />
+        <activity android:name=".enviromental" />
+        <activity android:name=".BleAccActivity" />
         <activity android:name=".StepsActivity" />
         <activity android:name=".AcclerometerActivity" />
-        <activity android:name=".SearchActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +40,7 @@
         </activity>
         <activity android:name=".heartDataActivity" />
         <activity android:name=".firstActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".SearchActivity" />
         <activity android:name=".DeviceServicesActivity" />
 
         <service

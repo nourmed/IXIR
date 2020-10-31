@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,15 +23,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ixir.adapters.RecyclerViewHorizontalListAdapter;
+import com.example.ixir.adapters.deviceAdapter;
 import com.example.ixir.sensors.BleAccelerometerSensor;
 import com.example.ixir.sensors.BleHeartRateSensor;
 import com.example.ixir.sensors.BleSensor;
 import com.example.ixir.sensors.BleSensors;
 import com.hookedonplay.decoviewlib.DecoView;
 import com.hookedonplay.decoviewlib.events.DecoEvent;
+import com.skyfishjy.library.RippleBackground;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,11 +96,40 @@ public class statisticsFragment extends Fragment {
     private android.support.v7.widget.RecyclerView RecyclerView;
     private RecyclerViewHorizontalListAdapter Adapter;
     private float[] results;
-
+    LinearLayout bluetooth, list;
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View fragments = inflater.inflate(R.layout.fragmentstatistique, container, false);
+
+        bluetooth= fragments.findViewById(R.id.find);
+        list= fragments.findViewById(R.id.nec);
+
+        list.setVisibility(View.GONE);
+        bluetooth.setVisibility(View.VISIBLE);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                int id = getResources().getIdentifier("com.example.ixir:drawable/" + "km", null, null);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        list.setVisibility(View.VISIBLE);
+                        bluetooth.setVisibility(View.GONE);
+
+
+                    }
+                }, 2000);
+            }
+        }, 10000);
+
+        final RippleBackground rippleBackground=(RippleBackground) fragments.findViewById(R.id.content1);
+      rippleBackground.startRippleAnimation();
+
 
 
         return fragments;

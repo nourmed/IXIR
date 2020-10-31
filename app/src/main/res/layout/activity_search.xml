@@ -22,7 +22,8 @@
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-          android:layout_weight="80"  >
+            android:layout_weight="80"
+            android:foregroundTint="@color/darkblue">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -30,8 +31,11 @@
             android:id="@+id/refresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:background="@color/white"
             android:text="Rechercher ..."
-            android:layout_weight="20"/>
+            android:textColor="@color/rippelColor"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

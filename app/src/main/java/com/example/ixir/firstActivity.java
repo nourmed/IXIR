@@ -1,6 +1,4 @@
 package com.example.ixir;
-
-
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -35,33 +33,17 @@ import com.example.ixir.sensors.BleSensor;
 
 
 public class firstActivity extends AppCompatActivity {
-
     private final static String TAG = firstActivity.class.getSimpleName();
-
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
     Bundle bundle;
     public static final String EXTRA_SERVICE_UUID = "SERVICE_UUID";
     private ExpandableListView gattServicesList;
-
-
-   String deviceName;
-     String deviceAddress;
-     String service ;
+    String deviceName;
+    String deviceAddress;
+    String service ;
     private BleService bleService;
     private boolean isConnected = false;
-
-
-
-
-
-
-
-
-
-
-
-
     final private int COLOR_Pink = Color.parseColor("#FFE32963");
     ViewPager viewPager;
     BottomNavigationView navigation;
@@ -75,7 +57,6 @@ public class firstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-
         getWindow().setStatusBarColor(COLOR_Pink);
         getSupportActionBar().hide();
         navigation = findViewById(R.id.navigation);
@@ -86,52 +67,35 @@ public class firstActivity extends AppCompatActivity {
         fragment3=new page3();
         fragment4=new page4();
         fragment5=new page5();
-
-
         viewPager = findViewById(R.id.viewpager);
         setupFm(getSupportFragmentManager(),fragment1,fragment2,fragment3,fragment4,fragment5, viewPager);
         viewPager.setCurrentItem(0);
         viewPager.setOnPageChangeListener(new PageChange());
-
-
         // Connecting to the BLE Device and discovering the characteristics
-
-
-
-
         final Intent intent = getIntent();
         deviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         deviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
         service = intent.getStringExtra(EXTRA_SERVICE_UUID);
-System.out.println("a"+deviceName+"b"+deviceAddress);
+        System.out.println("a"+deviceName+"b"+deviceAddress);
         // Sets up UI references.
         bundle = new Bundle();
-
         bundle.putString("adress", deviceAddress);
         // Sets up UI references.
         bundle.putString("service","00002ff0-0000-1000-8000-00805f9b34fb");
         System.out.println(deviceName+deviceAddress);
         fragment1.setArguments(bundle);
-
-       mf.setArguments(bundle);
-
-
+        mf.setArguments(bundle);
     }
 
     public static void setupFm(FragmentManager fragmentManager,Fragment f1,Fragment f2,Fragment f3,Fragment f4,Fragment f5, ViewPager viewPager){
         fragment_adapter Adapter = new fragment_adapter(fragmentManager);
-
         Adapter.add(f1, "Page One");
         Adapter.add(f2, "Page Two");
         Adapter.add(f3, "Page Three");
-
         Adapter.add(f4, "Page Four");
-
         Adapter.add(f5, "Page Five");
-
         viewPager.setAdapter(Adapter);
     }
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -157,8 +121,6 @@ System.out.println("a"+deviceName+"b"+deviceAddress);
             return false;
         }
     };
-
-
     public class PageChange implements ViewPager.OnPageChangeListener {
 
         @Override
@@ -193,13 +155,4 @@ System.out.println("a"+deviceName+"b"+deviceAddress);
 
         }
     }
-
-
-
-
-
-
-
-
-
 }

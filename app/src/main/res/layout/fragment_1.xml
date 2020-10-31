@@ -59,7 +59,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="3dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="Aujourd'hui"
+                        android:text="Today"
                         android:textSize="16sp" />
 
                     <RelativeLayout
@@ -95,7 +95,7 @@
                         android:id="@+id/stepCounter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="- step"
+                        android:text="2000 step"
                         android:textSize="22sp" />
 
 

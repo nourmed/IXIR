@@ -53,9 +53,10 @@ public class MesureFragment extends DemoSensorFragment {
     private String DeviceName;
     private String DeviceAdress;
     LineChartView lineChartView;
-    String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
-            "Oct", "Nov", "Dec"};
-    int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
+
+    String[] axisData = {};
+    float[] yAxisData = {86,67,141,112,83,65,74,89,81,77,151,68,66,82,88,83,74,81,79,90,77,97,86,91,73};
+
     private BleService bleService;
     final private int COLOR_BLUE = Color.parseColor("#1D76D2");
     private final static String TAG = heartDataActivity.class.getSimpleName();
@@ -109,43 +110,33 @@ public class MesureFragment extends DemoSensorFragment {
         heartimg.setVisibility(View.INVISIBLE);
 
         lineChartView = fragmentm.findViewById(R.id.chart);
+       addAnimation(heartView, series1Index, 64, 100, heartimg, R.drawable.heart, R.color.PINKi);
 
-        List yAxisValues = new ArrayList();
-        List axisValues = new ArrayList();
-
-
-        Line line = new Line(yAxisValues).setColor(Color.parseColor("#AF1B3F"));
-
-        for (int i = 0; i < axisData.length; i++) {
-            axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
-        }
-
-        for (int i = 0; i < yAxisData.length; i++) {
-            yAxisValues.add(new PointValue(i, yAxisData[i]));
-        }
-        List lines = new ArrayList();
-        lines.add(line);
-
-        LineChartData data = new LineChartData();
-        data.setLines(lines);
-        Axis axis = new Axis();
-        axis.setValues(axisValues);
-        axis.setTextSize(16);
-        axis.setTextColor(Color.parseColor("#1B1725"));
-        data.setAxisXBottom(axis);
-        Axis yAxis = new Axis();
-        yAxis.setTextColor(Color.parseColor("#1B1725"));
-        yAxis.setTextSize(16);
-        data.setAxisYLeft(yAxis);
-        lineChartView.setLineChartData(data);
-        Viewport viewport = new Viewport(lineChartView.getMaximumViewport());
-        viewport.top = 110;
-        lineChartView.setMaximumViewport(viewport);
-        lineChartView.setCurrentViewport(viewport);
+       List yAxisValues = new ArrayList();
+       List axisValues = new ArrayList();
 
 
+       Line line = new Line(yAxisValues).setColor(Color.parseColor("#AF1B3F"));
 
 
+       for (int i = 0; i < yAxisData.length; i++) {
+           yAxisValues.add(new PointValue(i, yAxisData[i]));
+       }
+       List lines = new ArrayList();
+       lines.add(line);
+
+       LineChartData data = new LineChartData();
+       data.setLines(lines);
+       Axis axis = new Axis();
+       data.setAxisXBottom(axis);
+
+       axis.setTextColor(Color.parseColor("#FFFFFF"));
+
+       lineChartView.setLineChartData(data);
+       Viewport viewport = new Viewport(lineChartView.getMaximumViewport());
+
+       lineChartView.setMaximumViewport(viewport);
+       lineChartView.setCurrentViewport(viewport);
 
 
 
@@ -198,6 +189,42 @@ public class MesureFragment extends DemoSensorFragment {
             final BleHeartRateSensor heartSensor = (BleHeartRateSensor) sensor;
             float[] values = heartSensor.getData();
             System.out.println(values);
+            yAxisData = values;
+            List yAxisValues = new ArrayList();
+            List axisValues = new ArrayList();
+
+
+            Line line = new Line(yAxisValues).setColor(Color.parseColor("#AF1B3F"));
+
+            for (int i = 0; i < axisData.length; i++) {
+                axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
+            }
+
+            for (int i = 0; i < yAxisData.length; i++) {
+                yAxisValues.add(new PointValue(i, yAxisData[i]));
+            }
+            List lines = new ArrayList();
+            lines.add(line);
+
+            LineChartData data = new LineChartData();
+            data.setLines(lines);
+            Axis axis = new Axis();
+            axis.setValues(axisValues);
+            axis.setTextSize(16);
+            axis.setTextColor(Color.parseColor("#1B1725"));
+            data.setAxisXBottom(axis);
+            Axis yAxis = new Axis();
+            yAxis.setTextColor(Color.parseColor("#1B1725"));
+            yAxis.setTextSize(16);
+            data.setAxisYLeft(yAxis);
+            lineChartView.setLineChartData(data);
+            Viewport viewport = new Viewport(lineChartView.getMaximumViewport());
+            viewport.top = 110;
+            lineChartView.setMaximumViewport(viewport);
+            lineChartView.setCurrentViewport(viewport);
+
+
+
         }
     }
 

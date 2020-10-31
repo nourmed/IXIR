@@ -20,4 +20,8 @@
     <color name="heartpink">#C5283D</color>
     <color name="secondorange">#FE938C</color>
     <color name="PINKi">#E32963</color>
+    <color name="background_pink">#E87CAC</color>
+    <color name="background_blue">#A9C9FF</color>
+    <color name="background_blue_dark">#016A97</color>
+
 </resources>

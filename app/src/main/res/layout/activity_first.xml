@@ -31,9 +31,9 @@
         android:background="#e32963"
         android:elevation="8dp"
         app:elevation="8dp"
-        app:itemBackground="@color/PINKi"
-        app:itemIconTint="@drawable/buttom_navigation_icon"
-        app:itemTextColor="#FE938C"
+        app:itemBackground="@color/rippelColor"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
         app:menu="@menu/navigation">
 
     </android.support.design.widget.BottomNavigationView>

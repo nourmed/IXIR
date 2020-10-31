@@ -71,6 +71,8 @@ public class deviceAdapter extends  RecyclerView.Adapter<deviceAdapter.ViewHolde
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.device);
+            nameTextView.setTextSize(20);
+            nameTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         }
 
     }
